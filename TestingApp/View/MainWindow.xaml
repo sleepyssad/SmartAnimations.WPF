@@ -1,0 +1,44 @@
+﻿<Window x:Class="TestingApp.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:an="clr-namespace:SmartAnimations.WPF;assembly=SmartAnimations.WPF"
+        xmlns:content="clr-namespace:TestingApp.View.Content"
+        mc:Ignorable="d"
+        Title="SmartAnimations.WPF" Height="450" Width="800">
+
+    <TabControl>
+        <TabItem Header="Home">
+            <TabControl TabStripPlacement="Bottom">
+                <TabItem Header="SmDoubleAnimation">
+                    
+                </TabItem>
+                <TabItem Header="SmColorAnimation">
+
+                </TabItem>
+                <TabItem Header="SmPointAnimation">
+
+                </TabItem>
+                <TabItem Header="SmThicknessAnimation">
+
+                </TabItem>
+            </TabControl>
+        </TabItem>
+        <TabItem Header="Single">
+            <content:Single/>
+        </TabItem>
+        <TabItem Header="Container">
+
+        </TabItem>
+        <TabItem Header="Trigger">
+            
+        </TabItem>
+        <TabItem Header="Event Trigger">
+            
+        </TabItem>
+        <TabItem Header="Info">
+            <content:Info/>
+        </TabItem>
+    </TabControl>
+</Window>

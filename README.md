@@ -1,2 +1,2 @@
 # SmartAnimations.WPF
- More simplified animation creation in xaml and the ability to bind to animation parameters.
+ More simplified animation creation in WPF .NET core and the ability to bind to animation parameters.

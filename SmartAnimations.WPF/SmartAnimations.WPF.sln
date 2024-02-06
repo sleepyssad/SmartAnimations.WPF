@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartAnimations.WPF", "SmartAnimations.WPF\SmartAnimations.WPF.csproj", "{0F4F4DF0-3DED-4A98-881A-AE9962E0D81F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingApp", "TestingApp\TestingApp.csproj", "{93056B1C-D945-4DC3-827A-DA57086DF85E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0F4F4DF0-3DED-4A98-881A-AE9962E0D81F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F4F4DF0-3DED-4A98-881A-AE9962E0D81F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F4F4DF0-3DED-4A98-881A-AE9962E0D81F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F4F4DF0-3DED-4A98-881A-AE9962E0D81F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93056B1C-D945-4DC3-827A-DA57086DF85E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93056B1C-D945-4DC3-827A-DA57086DF85E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93056B1C-D945-4DC3-827A-DA57086DF85E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93056B1C-D945-4DC3-827A-DA57086DF85E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AF326597-7199-4DF4-A7FA-4E78806269B7}
+	EndGlobalSection
+EndGlobal

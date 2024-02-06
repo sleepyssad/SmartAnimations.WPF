@@ -24,5 +24,20 @@ namespace TestingApp.View.Content
         {
             InitializeComponent();
         }
+
+        private void ButtonStartWidthProperty_Click(object sender, RoutedEventArgs e)
+        {
+            SmDoubleAnimationWidthProperty.StartAnimation();
+        }
+
+        private void ButtonStartOpacityProperty_Click(object sender, RoutedEventArgs e)
+        {
+            SmDoubleAnimationOpacityProperty.StartAnimation();
+        }
+
+        private void ButtonStartFontSizeProperty_Click(object sender, RoutedEventArgs e)
+        {
+            SmDoubleAnimationFontSizeProperty.StartAnimation();
+        }
     }
 }

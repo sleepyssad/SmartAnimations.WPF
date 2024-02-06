@@ -9,33 +9,17 @@
         Title="SmartAnimations.WPF" Height="450" Width="800">
 
     <TabControl>
-        <TabItem Header="Home">
-            <TabControl TabStripPlacement="Bottom">
-                <TabItem Header="SmDoubleAnimation">
-                    
-                </TabItem>
-                <TabItem Header="SmColorAnimation">
-
-                </TabItem>
-                <TabItem Header="SmPointAnimation">
-
-                </TabItem>
-                <TabItem Header="SmThicknessAnimation">
-
-                </TabItem>
-            </TabControl>
-        </TabItem>
         <TabItem Header="Single">
             <content:Single/>
-        </TabItem>
-        <TabItem Header="Container">
-
         </TabItem>
         <TabItem Header="Trigger">
             
         </TabItem>
         <TabItem Header="Event Trigger">
             
+        </TabItem>
+        <TabItem Header="Container">
+
         </TabItem>
         <TabItem Header="Info">
             <content:Info/>

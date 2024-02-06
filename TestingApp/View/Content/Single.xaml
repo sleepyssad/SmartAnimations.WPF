@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TestingApp.View.Content"
              xmlns:vm="clr-namespace:TestingApp.ViewModel"
+             xmlns:an="clr-namespace:SmartAnimations.WPF;assembly=SmartAnimations.WPF"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     
@@ -12,7 +13,71 @@
         <vm:SingleVM/>
     </UserControl.DataContext>
 
-    <Grid>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="10">
+            <TextBlock FontSize="16" FontWeight="Medium">SmDoubleAnimation</TextBlock>
+            <Grid Height="30" Margin="0 4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Padding="20 0" Click="ButtonStartWidthProperty_Click" Width="180">Start WidthProperty</Button>
+                <Grid Grid.Column="1">
+                    <Grid Background="red" HorizontalAlignment="Left">
+                        <an:SmDoubleAnimation x:Name="SmDoubleAnimationWidthProperty"
+                                              ParentElement="{Binding RelativeSource={RelativeSource AncestorType=Grid,Mode=FindAncestor}}" 
+                                              From="0" 
+                                              To="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor,AncestorLevel=1}, Path=ActualWidth}"
+                                              Duration="1000" 
+                                              PropertyPath="{x:Static Button.WidthProperty}">
+                            <an:SmDoubleAnimation.EasingFunction>
+                                <PowerEase Power="5"/>
+                            </an:SmDoubleAnimation.EasingFunction>
+                        </an:SmDoubleAnimation>
+                    </Grid>
+                </Grid>
+            </Grid>
+            
+            <Grid Height="30" Margin="0 4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Padding="20 0" Click="ButtonStartOpacityProperty_Click" Width="180">Start OpacityProperty</Button>
+                <Grid Grid.Column="1">
+                    <Grid Background="red" >
+                        <an:SmDoubleAnimation x:Name="SmDoubleAnimationOpacityProperty"
+                                  ParentElement="{Binding RelativeSource={RelativeSource AncestorType=Grid,Mode=FindAncestor}}" 
+                                  From="0" 
+                                  To="1"
+                                  Duration="1000" 
+                                  PropertyPath="{x:Static Button.OpacityProperty}">
+                        </an:SmDoubleAnimation>
+                    </Grid>
+                </Grid>
+            </Grid>
 
-    </Grid>
+            <Grid Height="30" Margin="0 4" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Padding="20 0" Width="180" Click="ButtonStartFontSizeProperty_Click" >Start FontSizeProperty</Button>
+                <Grid Grid.Column="1">
+                    <TextBlock Text="FontSizeProperty" VerticalAlignment="Center">
+                          <an:SmDoubleAnimation  x:Name="SmDoubleAnimationFontSizeProperty"
+                              ParentElement="{Binding RelativeSource={RelativeSource AncestorType=Grid,Mode=FindAncestor}}" 
+                              From="10" 
+                              To="20"
+                              Duration="500" 
+                              PropertyPath="{x:Static Button.FontSizeProperty}">
+                                <an:SmDoubleAnimation.EasingFunction>
+                                    <PowerEase Power="5"/>
+                                </an:SmDoubleAnimation.EasingFunction>
+                          </an:SmDoubleAnimation>
+                    </TextBlock>
+                </Grid>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
 </UserControl>

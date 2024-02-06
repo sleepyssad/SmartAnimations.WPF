@@ -3,9 +3,35 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:an="clr-namespace:SmartAnimations.WPF;assembly=SmartAnimations.WPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    
     <Grid>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <StackPanel Orientation="Horizontal">
+            <Button Content="1" MinWidth="50" Click="Button_Click"/>
+            <Button Content="2" MinWidth="50" Click="Button_Click_1"/>
+            <Button Content="3" MinWidth="50" Click="Button_Click_2"/>
+            <Button Content="4" MinWidth="50" Click="Button_Click_3"/>
+        </StackPanel>
 
+        <Grid x:Name="Grid1"  Background="Red" Grid.Row="1">
+            <an:SmTrigger x:Name="smTrigger" FirstValue="3" SecondValue="3" Operation="Equals">
+                <an:SmTrigger.EnterActions>
+                    <an:SmDoubleAnimation ParentElement="{Binding ElementName=Grid1}" Duration="1000" From="0" To="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=ActualWidth}" PropertyPath="{x:Static Button.WidthProperty}" BeginTime="0"   CanAnimation="True"/>
+                    <an:SmDoubleAnimation ParentElement="{Binding ElementName=Grid1}" Duration="1000" From="0" To="1" PropertyPath="{x:Static Button.OpacityProperty}" BeginTime="0"   CanAnimation="True"/>
+                </an:SmTrigger.EnterActions>
+                <an:SmTrigger.ExitActions>
+                    <an:SmDoubleAnimation ParentElement="{Binding ElementName=Grid1}" Duration="1000" From="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=ActualWidth}" To="0" PropertyPath="{x:Static Button.WidthProperty}" BeginTime="0"   CanAnimation="True"/>
+                    <an:SmDoubleAnimation ParentElement="{Binding ElementName=Grid1}" Duration="1000" From="1" To="0" PropertyPath="{x:Static Button.OpacityProperty}" BeginTime="0"   CanAnimation="True"/>
+                </an:SmTrigger.ExitActions>
+            </an:SmTrigger>
+        </Grid>
     </Grid>
 </Window>

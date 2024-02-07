@@ -5,7 +5,7 @@ namespace SmartAnimations.WPF
 {
     public class SmDoubleAnimation : SmAnimationBase
     {
-        public static readonly DependencyProperty FromProperty = DependencyProperty.Register("From", typeof(double), typeof(SmDoubleAnimation), new PropertyMetadata(OnPropsChange));
+        public static readonly DependencyProperty FromProperty = DependencyProperty.Register("From", typeof(double), typeof(SmDoubleAnimation), new PropertyMetadata((double)-1,OnPropsChange));
         public double From
         {
             get => (double)GetValue(FromProperty);
@@ -30,7 +30,6 @@ namespace SmartAnimations.WPF
             base.OnLoadedCompleted(sender, e);
         }
 
-
         protected override void OnPropsChanged(DependencyPropertyChangedEventArgs e)
         {
             if (IsLoaded)
@@ -42,15 +41,24 @@ namespace SmartAnimations.WPF
 
         private void InitStoryboard()
         {
+            if (base.ParentElement is null && base.PropertyPath is null)
+            {
+                return;
+            }
+
             DoubleAnimation animation = new DoubleAnimation
             {
-                From = this.From,
                 To = this.To,
                 Duration = TimeSpan.FromMilliseconds(base.Duration),
                 AutoReverse = base.AutoReverse,
                 BeginTime = TimeSpan.FromMilliseconds(base.BeginTime),
                 EasingFunction = base.EasingFunction,
             };
+
+            if (this.From is not -1)
+            {
+                animation.From = this.From;
+            }
 
             if (base.RepeatBehavior == RepeatBehavior.Forever)
             {
@@ -59,6 +67,7 @@ namespace SmartAnimations.WPF
 
             base.Storyboard.Children.Clear();
             base.Storyboard.Children.Add(animation);
+
             Storyboard.SetTarget(animation, base.ParentElement);
             Storyboard.SetTargetProperty(animation, new PropertyPath(base.PropertyPath));
         }

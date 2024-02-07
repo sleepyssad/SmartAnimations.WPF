@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartAnimations.WPF;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,13 +12,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
+using SmartAnimations.WPF.Helpers;
 
 namespace TestingApp.View.Content
 {
-    /// <summary>
-    /// Логика взаимодействия для Single.xaml
-    /// </summary>
     public partial class Single : UserControl
     {
         public Single()
@@ -25,19 +23,16 @@ namespace TestingApp.View.Content
             InitializeComponent();
         }
 
-        private void ButtonStartWidthProperty_Click(object sender, RoutedEventArgs e)
-        {
-            SmDoubleAnimationWidthProperty.StartAnimation();
-        }
 
-        private void ButtonStartOpacityProperty_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            SmDoubleAnimationOpacityProperty.StartAnimation();
-        }
-
-        private void ButtonStartFontSizeProperty_Click(object sender, RoutedEventArgs e)
-        {
-            SmDoubleAnimationFontSizeProperty.StartAnimation();
+            if (sender is Button btn && btn is not null) 
+            {
+                foreach (var animation in VisualHelper.FindVisualChildren<SmAnimationBase>(btn))
+                {
+                    animation.StartAnimation();
+                }
+            }
         }
     }
 }

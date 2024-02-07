@@ -15,7 +15,7 @@
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="10">
-            <TextBlock FontSize="16" FontWeight="Medium">SmDoubleAnimation</TextBlock>
+            <TextBlock FontSize="16" FontWeight="Medium" Margin="0 10">SmDoubleAnimation</TextBlock>
 
             <Button ToolTip="WidthProperty" Style="{StaticResource ButtonSingleAnimation}" Click="Button_Click">
                 <Button.Content>
@@ -57,7 +57,7 @@
                 </Button.Content>
             </Button>
 
-            <TextBlock FontSize="16" FontWeight="Medium">SmColorAnimation</TextBlock>
+            <TextBlock FontSize="16" FontWeight="Medium" Margin="0 10">SmColorAnimation</TextBlock>
 
             <Button ToolTip="Single" Style="{StaticResource ButtonSingleAnimation}" Click="Button_Click">
                 <Button.Content>
@@ -92,7 +92,74 @@
                     </Border>
                 </Button.Content>
             </Button>
-            
+
+            <TextBlock FontSize="16" FontWeight="Medium" Margin="0 10">SmThicknessAnimation</TextBlock>
+
+            <Button ToolTip="BorderThicknessProperty" Style="{StaticResource ButtonSingleAnimation}" Click="Button_Click">
+                <Button.Content>
+                    <Border BorderBrush="Red">
+                        <an:SmThicknessAnimation ParentElement="{Binding RelativeSource={RelativeSource AncestorType=Border,Mode=FindAncestor}}" 
+                                   From="0" 
+                                   To="5"
+                                   Duration="700" 
+                                   PropertyPath="{x:Static Border.BorderThicknessProperty}">
+                        </an:SmThicknessAnimation>
+                    </Border>
+                </Button.Content>
+            </Button>
+
+            <TextBlock FontSize="16" FontWeight="Medium" Margin="0 10">SmPointAnimation</TextBlock>
+
+            <Button ToolTip="CenterProperty" Style="{StaticResource ButtonSingleAnimation}" Click="Button_Click">
+                <Button.Content>
+                    <Grid>
+                        <Path Fill="Red">
+                            <Path.Data>
+                                <EllipseGeometry x:Name="AnimatedEllipse" Center="200,20" RadiusX="20" RadiusY="20" />
+                            </Path.Data>
+                        </Path>
+                        <an:SmPointAnimation ParentElement="{Binding ElementName=AnimatedEllipse}" 
+                                  From="200,20" 
+                                  To="400,20" 
+                                  Duration="700" 
+                                  PropertyPath="{x:Static EllipseGeometry.CenterProperty}">
+                        </an:SmPointAnimation>
+                    </Grid>
+                </Button.Content>
+            </Button>
+
+            <Button ToolTip="Multi PointProperty" Style="{StaticResource ButtonSingleAnimation}" Click="Button_Click">
+                <Button.Content>
+                    <Grid>
+                        <Path Fill="Red" HorizontalAlignment="Center">
+                            <Path.Data>
+                                <PathGeometry>
+                                    <PathGeometry.Figures>
+                                        <PathFigure StartPoint="0,0">
+                                            <LineSegment x:Name="S1"/>
+                                            <LineSegment x:Name="S2"/>
+                                            <LineSegment Point="200,0"/>
+                                        </PathFigure>
+                                    </PathGeometry.Figures>
+                                </PathGeometry>
+                            </Path.Data>
+                        </Path>
+                        <an:SmPointAnimation ParentElement="{Binding ElementName=S1}" 
+                                             From="0, 40" 
+                                             To="30, 10" 
+                                             Duration="700" 
+                                             PropertyPath="{x:Static LineSegment.PointProperty}">
+                        </an:SmPointAnimation>
+                        <an:SmPointAnimation ParentElement="{Binding ElementName=S2}" 
+                                             From="200, 40" 
+                                             To="170, 10" 
+                                             Duration="700" 
+                                             PropertyPath="{x:Static LineSegment.PointProperty}">
+                        </an:SmPointAnimation>
+                    </Grid>
+                </Button.Content>
+            </Button>
+
         </StackPanel>
     </ScrollViewer>
 </UserControl>

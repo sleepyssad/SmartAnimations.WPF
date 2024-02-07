@@ -25,7 +25,7 @@ namespace SmartAnimations.WPF
             get => (Color)GetValue(ToProperty);
             set => SetValue(ToProperty, value);
         }
-        // это в base
+       
         protected override void OnLoadedCompleted(object? sender, EventArgs e)
         {
             if (CanAnimation)
@@ -37,7 +37,7 @@ namespace SmartAnimations.WPF
             base.OnLoadedCompleted(sender, e);
         }
 
-        // это в base
+        
         protected override void OnPropsChanged(DependencyPropertyChangedEventArgs e)
         {
             if (IsLoaded)
@@ -46,7 +46,7 @@ namespace SmartAnimations.WPF
 
             }
         }
-        // это в base и наследование 
+     
         private void InitStoryboard()
         {
             if (base.PropertyPath is string && base.ParentElement is not null)

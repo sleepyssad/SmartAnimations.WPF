@@ -6,8 +6,6 @@ namespace SmartAnimations.WPF
 {
     public abstract class SmAnimationBase : UserControl
     {
-        internal bool IsAnimating { get; private set; }
-
         public string TriggerKey { get; set; }
 
         public event EventHandler LoadedCompleted;
@@ -73,8 +71,6 @@ namespace SmartAnimations.WPF
         {
             Storyboard = new Storyboard();
 
-            IsAnimating = false;
-
             this.Loaded += CoreLoaded;
             LoadedCompleted += OnLoadedCompleted;
         }
@@ -119,8 +115,6 @@ namespace SmartAnimations.WPF
             if (ParentElement is not null && CanAnimation)
             {
                 Storyboard.Begin();
-
-                IsAnimating = true;
             }
         }
 
@@ -129,8 +123,6 @@ namespace SmartAnimations.WPF
             if (ParentElement is not null)
             {
                 Storyboard.Stop();
-
-                IsAnimating = false;
             }
         }
     }

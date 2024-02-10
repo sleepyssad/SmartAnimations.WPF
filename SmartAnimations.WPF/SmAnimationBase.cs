@@ -103,12 +103,24 @@ namespace SmartAnimations.WPF
             }
         }
 
-        protected abstract void OnPropsChanged(DependencyPropertyChangedEventArgs e);
+        protected virtual void OnPropsChanged(DependencyPropertyChangedEventArgs e)
+        {
+            if (IsLoaded)
+            {
+                InitStoryboard();
+            }
+        }
 
         protected virtual void OnLoadedCompleted(object? sender, EventArgs e)
         {
-
+            if (CanAnimation)
+            {
+                InitStoryboard();
+                StartAnimation();
+            }
         }
+
+        protected abstract void InitStoryboard();
 
         public virtual void StartAnimation()
         {

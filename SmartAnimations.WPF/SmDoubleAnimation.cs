@@ -19,27 +19,7 @@ namespace SmartAnimations.WPF
             set => SetValue(ToProperty, value);
         }
 
-        protected override void OnLoadedCompleted(object? sender, EventArgs e)
-        {
-            if (CanAnimation)
-            {
-                InitStoryboard();
-                base.StartAnimation();
-            }
-
-            base.OnLoadedCompleted(sender, e);
-        }
-
-        protected override void OnPropsChanged(DependencyPropertyChangedEventArgs e)
-        {
-            if (IsLoaded)
-            {
-                InitStoryboard();
-
-            }
-        }
-
-        private void InitStoryboard()
+        protected override void InitStoryboard()
         {
             if (base.ParentElement is null && base.PropertyPath is null)
             {

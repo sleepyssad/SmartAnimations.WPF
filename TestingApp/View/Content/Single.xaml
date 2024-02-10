@@ -120,7 +120,7 @@
                         </Path>
                         <an:SmPointAnimation ParentElement="{Binding ElementName=AnimatedEllipse}" 
                                   From="200,20" 
-                                  To="400,20" 
+                                  To="600,20" 
                                   Duration="700" 
                                   PropertyPath="{x:Static EllipseGeometry.CenterProperty}">
                         </an:SmPointAnimation>

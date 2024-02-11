@@ -10,7 +10,9 @@ namespace SmartAnimations.WPF
 {
     public class SmThicknessAnimation : SmAnimationBase
     {
-        public static readonly DependencyProperty FromProperty = DependencyProperty.Register("From", typeof(Thickness), typeof(SmThicknessAnimation), new PropertyMetadata(OnPropsChange));
+        public static Thickness defaultFromValue = new Thickness(-999999, -999999, -999999, -999999);
+
+        public static readonly DependencyProperty FromProperty = DependencyProperty.Register("From", typeof(Thickness), typeof(SmThicknessAnimation), new PropertyMetadata(defaultFromValue,OnPropsChange));
         public Thickness From
         {
             get => (Thickness)GetValue(FromProperty);
@@ -33,13 +35,17 @@ namespace SmartAnimations.WPF
 
             ThicknessAnimation animation = new ThicknessAnimation
             {
-                From = this.From,
                 To = this.To,
                 Duration = TimeSpan.FromMilliseconds(base.Duration),
                 AutoReverse = base.AutoReverse,
                 BeginTime = TimeSpan.FromMilliseconds(base.BeginTime),
                 EasingFunction = base.EasingFunction,
             };
+
+            if (this.From != defaultFromValue)
+            {
+                animation.From = this.From;
+            }
 
             if (base.RepeatBehavior == RepeatBehavior.Forever)
             {

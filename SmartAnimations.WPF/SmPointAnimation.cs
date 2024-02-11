@@ -11,9 +11,11 @@ namespace SmartAnimations.WPF
 {
     public class SmPointAnimation : SmAnimationBase
     {
-        private PointAnimation pointAnimation;
+        private PointAnimation animation;
 
-        public static readonly DependencyProperty FromProperty = DependencyProperty.Register("From", typeof(Point), typeof(SmPointAnimation), new PropertyMetadata(OnPropsChange));
+        public static Point defaultFromValue = new Point(-999999, -999999);
+
+        public static readonly DependencyProperty FromProperty = DependencyProperty.Register("From", typeof(Point), typeof(SmPointAnimation), new PropertyMetadata(defaultFromValue, OnPropsChange));
         public Point From
         {
             get => (Point)GetValue(FromProperty);
@@ -35,9 +37,8 @@ namespace SmartAnimations.WPF
                 return;
             }
 
-            pointAnimation = new PointAnimation
+            animation = new PointAnimation
             {
-                From = this.From,
                 To = this.To,
                 Duration = TimeSpan.FromMilliseconds(base.Duration),
                 AutoReverse = base.AutoReverse,
@@ -45,9 +46,14 @@ namespace SmartAnimations.WPF
                 EasingFunction = base.EasingFunction,
             };
 
+            if (this.From != defaultFromValue)
+            {
+                animation.From = this.From;
+            }
+
             if (base.RepeatBehavior == RepeatBehavior.Forever)
             {
-                pointAnimation.RepeatBehavior = base.RepeatBehavior;
+                animation.RepeatBehavior = base.RepeatBehavior;
             }
         }
 
@@ -55,7 +61,7 @@ namespace SmartAnimations.WPF
         {
             if (ParentElement is not null && CanAnimation)
             {
-                (ParentElement as Animatable).BeginAnimation(base.PropertyPath as DependencyProperty, pointAnimation);
+                (ParentElement as Animatable).BeginAnimation(base.PropertyPath as DependencyProperty, animation);
             }
         }
     }

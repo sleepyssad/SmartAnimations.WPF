@@ -5,7 +5,9 @@ namespace SmartAnimations.WPF
 {
     public class SmDoubleAnimation : SmAnimationBase
     {
-        public static readonly DependencyProperty FromProperty = DependencyProperty.Register("From", typeof(double), typeof(SmDoubleAnimation), new PropertyMetadata((double)-1,OnPropsChange));
+        public static double defaultFromValue = (double)-1;
+
+        public static readonly DependencyProperty FromProperty = DependencyProperty.Register("From", typeof(double), typeof(SmDoubleAnimation), new PropertyMetadata(defaultFromValue, OnPropsChange));
         public double From
         {
             get => (double)GetValue(FromProperty);
@@ -35,7 +37,7 @@ namespace SmartAnimations.WPF
                 EasingFunction = base.EasingFunction,
             };
 
-            if (this.From is not -1)
+            if (this.From != defaultFromValue)
             {
                 animation.From = this.From;
             }

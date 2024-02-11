@@ -12,7 +12,9 @@ namespace SmartAnimations.WPF
 {
     public class SmColorAnimation : SmAnimationBase
     {
-        public static readonly DependencyProperty FromProperty = DependencyProperty.Register("From", typeof(Color), typeof(SmColorAnimation), new PropertyMetadata(OnPropsChange));
+        public static Color defaultFromValue = (Color)ColorConverter.ConvertFromString("#01234567");
+
+        public static readonly DependencyProperty FromProperty = DependencyProperty.Register("From", typeof(Color), typeof(SmColorAnimation), new PropertyMetadata(defaultFromValue, OnPropsChange));
         public Color From
         {
             get => (Color)GetValue(FromProperty);
@@ -32,13 +34,17 @@ namespace SmartAnimations.WPF
             {
                 ColorAnimation animation = new ColorAnimation
                 {
-                    From = this.From,
                     To = this.To,
                     Duration = TimeSpan.FromMilliseconds(base.Duration),
                     AutoReverse = base.AutoReverse,
                     BeginTime = TimeSpan.FromMilliseconds(base.BeginTime),
                     EasingFunction = base.EasingFunction,
                 };
+
+                if (this.From != defaultFromValue)
+                {
+                   animation.From = this.From;
+                }
 
                 if (base.RepeatBehavior == RepeatBehavior.Forever)
                 {

@@ -5,7 +5,7 @@ using SmartAnimations.WPF.Helpers;
 
 namespace SmartAnimations.WPF
 {
-    public class SmTriggerBase : UserControl
+    public abstract class SmTriggerBase : UserControl
     {
         internal const string EnterActionsName = "EnterActions";
 
@@ -76,6 +76,7 @@ namespace SmartAnimations.WPF
         protected virtual void OnReloadedAllActions()
         {
             this.state = false;
+            UpdateAnimationsForState();
         }
 
         private void Actions_OnChanged(object? sender, ObservableCollection<SmAnimationBase> e)
@@ -117,6 +118,19 @@ namespace SmartAnimations.WPF
                 case false:
                     smAnimationBase.StopAnimation();
                     break;
+            }
+        }
+
+        internal abstract void UpdateAnimationsForState();
+
+        internal static void OnChange(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is SmTrigger smTrigger)
+            {
+                if (smTrigger.IsLoaded)
+                {
+                    smTrigger.UpdateAnimationsForState();
+                }
             }
         }
     }

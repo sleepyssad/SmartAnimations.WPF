@@ -29,7 +29,7 @@ namespace SmartAnimations.WPF
             set { SetValue(OperationProperty, value); }
         }
 
-        void UpdateAnimationsForState()
+        internal override void UpdateAnimationsForState()
         {
             bool newState = Equals(FirstValue, SecondValue);
 
@@ -59,23 +59,6 @@ namespace SmartAnimations.WPF
                             base.AnimationActionSwitch(smAnimationBase, !base.state);
                             break;
                     }
-                }
-            }
-        }
-
-        protected override void OnReloadedAllActions()
-        {
-            base.OnReloadedAllActions();
-            this.UpdateAnimationsForState();
-        }
-
-        public static void OnChange(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if (d is SmTrigger smTrigger)
-            {
-                if (smTrigger.IsLoaded)
-                {
-                    smTrigger.UpdateAnimationsForState();
                 }
             }
         }

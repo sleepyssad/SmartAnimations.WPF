@@ -11,20 +11,8 @@ namespace TestingApp.ViewModel
 {
     public partial class SingleVM : ObservableObject
     {
-        [ObservableProperty]
-        double value;
-
-        public ICommand ChangeCommand { get; set; }
-
         public SingleVM()
         {
-            Value = 1000;
-            ChangeCommand = new RelayCommand(Change);
-        }
-
-        private void Change()
-        {
-
         }
     }
 }

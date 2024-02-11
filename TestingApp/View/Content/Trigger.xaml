@@ -1,0 +1,93 @@
+﻿<UserControl x:Class="TestingApp.View.Content.Trigger"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TestingApp.View.Content"
+             xmlns:an="clr-namespace:SmartAnimations.WPF;assembly=SmartAnimations.WPF"
+             xmlns:ty="clr-namespace:SmartAnimations.WPF.Types;assembly=SmartAnimations.WPF"
+             xmlns:vm="clr-namespace:TestingApp.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.DataContext>
+        <vm:TriggerVM/>
+    </UserControl.DataContext>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="10">
+            <TextBlock FontSize="16" FontWeight="Medium" Margin="0 10">Parameters</TextBlock>
+            <Grid>
+                <Grid.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="FontSize" Value="14"/>
+                    </Style>
+                    <Style TargetType="TextBox">
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="Height" Value="26"/>
+                    </Style>
+                    <Style TargetType="RadioButton">
+                        <Setter Property="GroupName" Value="Operation"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="FontSize" Value="13"/>
+                        <Setter Property="Margin" Value="0 0 10 0"/>
+                    </Style>
+                </Grid.Resources>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0">First value</TextBlock>
+                <TextBlock Grid.Row="1">Operation</TextBlock>
+                <TextBlock Grid.Row="2">Second value</TextBlock>
+
+                <TextBox x:Name="FirstValue" Text="10" Grid.Row="0" Grid.Column="2"/>
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="2">
+                    <RadioButton Content="Equals" Command="{Binding ChangeOrationCommand}" CommandParameter="{x:Static ty:SmTriggerOperation.Equals}" IsChecked="True"/>
+                    <RadioButton Content="Not equals" Command="{Binding ChangeOrationCommand}" CommandParameter="{x:Static ty:SmTriggerOperation.NotEquals}"/>
+                </StackPanel>
+                <TextBox x:Name="SecondValue" Text="20" Grid.Row="2" Grid.Column="2"/>
+            </Grid>
+
+
+            <Border BorderBrush="Black" BorderThickness="1" Margin="0 20">
+                <Grid>
+                    <Grid x:Name="RedGrid"  Background="red" Width="0" Height="50">
+                        <an:SmTrigger FirstValue="{Binding ElementName=FirstValue, Path=Text}" SecondValue="{Binding ElementName=SecondValue, Path=Text}" Operation="{Binding Opration}">
+                            <an:SmTrigger.EnterActions>
+                                <an:SmDoubleAnimation ParentElement="{Binding ElementName=RedGrid}" 
+                                         To="{Binding RelativeSource={RelativeSource AncestorType=Grid, Mode=FindAncestor,AncestorLevel=3}, Path=ActualWidth}"
+                                         Duration="700" 
+                                         PropertyPath="{x:Static Button.WidthProperty}">
+                                </an:SmDoubleAnimation>
+                            </an:SmTrigger.EnterActions>
+                            <an:SmTrigger.ExitActions>
+                                <an:SmDoubleAnimation ParentElement="{Binding ElementName=RedGrid}" 
+                                         To="0"
+                                         Duration="700" 
+                                         PropertyPath="{x:Static Button.WidthProperty}">
+                                </an:SmDoubleAnimation>
+                            </an:SmTrigger.ExitActions>
+                        </an:SmTrigger>
+                      
+                    </Grid>
+
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="14">
+                        Animation
+                    </TextBlock>
+                </Grid>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

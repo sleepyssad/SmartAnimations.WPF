@@ -43,7 +43,11 @@ namespace SmartAnimations.WPF
 
         private void SmTriggerBase_Loaded(object sender, RoutedEventArgs e)
         {
-            InitActions();
+            if (container != null)
+            {
+                InitActions();
+            }
+       
         }
 
         private void InitActions()

@@ -13,7 +13,7 @@
             <content:Single/>
         </TabItem>
         <TabItem Header="Trigger">
-            
+            <content:Trigger/>
         </TabItem>
         <TabItem Header="Event Trigger">
             

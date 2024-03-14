@@ -16,10 +16,10 @@
             <content:Trigger/>
         </TabItem>
         <TabItem Header="Event Trigger">
-            
+            <content:EventTrigger/>
         </TabItem>
         <TabItem Header="Container">
-
+            <content:Container/>
         </TabItem>
         <TabItem Header="Info">
             <content:Info/>

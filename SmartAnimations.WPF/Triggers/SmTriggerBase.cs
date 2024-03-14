@@ -56,8 +56,6 @@ namespace SmartAnimations.WPF
             {
                 if (item is SmAnimationBase smAnimationBase)
                 {
-                    var sdsd = smAnimationBase.TriggerKey;
-
                     smAnimationBase.LoadedCompleted -= SmAnimationBase_LoadedCompleted;
                     smAnimationBase.LoadedCompleted += SmAnimationBase_LoadedCompleted;
                 }

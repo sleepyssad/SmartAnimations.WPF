@@ -6,16 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Markup;
 
 namespace SmartAnimations.WPF
 {
-    // в SmEventTrigger должна быть коллекция анимаций. 
-    // пример использования триггера - 2 кнопки. Плей и пауза. На плей заполняем, а на паузу очищаеем
-    // Пр
-    // Так-же должен реагировать на loaded
-    public class SmEventTrigger : UserControl
+    [ContentProperty(nameof(EnterActions))]
+    public class SmEventTrigger : SmTriggerBase
     {
-        public static readonly DependencyProperty SourceNameProperty = DependencyProperty.Register("SourceName", typeof(object), typeof(SmEventTrigger), new PropertyMetadata(OnChange));
+        public static readonly DependencyProperty SourceNameProperty = DependencyProperty.Register("SourceName", typeof(object), typeof(SmEventTrigger), new PropertyMetadata(Change));
 
         public object SourceName
         {
@@ -23,7 +21,7 @@ namespace SmartAnimations.WPF
             set { SetValue(SourceNameProperty, value); }
         }
 
-        public static readonly DependencyProperty RoutedEventProperty = DependencyProperty.Register("RoutedEvent", typeof(RoutedEvent), typeof(SmEventTrigger), new PropertyMetadata(OnChange));
+        public static readonly DependencyProperty RoutedEventProperty = DependencyProperty.Register("RoutedEvent", typeof(RoutedEvent), typeof(SmEventTrigger), new PropertyMetadata(Change));
 
         public RoutedEvent RoutedEvent
         {
@@ -31,12 +29,31 @@ namespace SmartAnimations.WPF
             set { SetValue(RoutedEventProperty, value); }
         }
 
-        internal static void OnChange(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        public SmEventTrigger()
         {
-
+            this.Loaded += SmEventTrigger_Loaded;
         }
 
-        private void UpdateAnimationsForState()
+        private void SmEventTrigger_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (ExitActions.Count > 0)
+            {
+                StartActions(ExitActionsName);
+            }
+        }
+
+        internal static void Change(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is SmEventTrigger smTrigger)
+            {
+                if (smTrigger.SourceName != null && smTrigger.RoutedEvent != null)
+                {
+                    smTrigger.InitHandler();
+                }
+            }
+        }
+
+        internal void InitHandler()
         {
             FrameworkElement sourceElement;
 
@@ -55,17 +72,37 @@ namespace SmartAnimations.WPF
             {
                 return;
             }
-          
+
             if (sourceElement != null)
             {
+                sourceElement.RemoveHandler(RoutedEvent, new RoutedEventHandler(OnEventTriggered));
                 sourceElement.AddHandler(RoutedEvent, new RoutedEventHandler(OnEventTriggered));
+
             }
         }
-        private void OnEventTriggered(object sender, RoutedEventArgs e)
+
+        internal void StartActions(string actionsName)
         {
-           
+            base.state = true;
+
+            foreach (var item in base.container.Children)
+            {
+                if (item is SmAnimationBase smAnimationBase)
+                {
+                    if (smAnimationBase.TriggerKey == actionsName)
+                        base.AnimationActionSwitch(smAnimationBase, base.state);
+                }
+            }
         }
 
-       
+        private void OnEventTriggered(object sender, RoutedEventArgs e)
+        {
+            StartActions(EnterActionsName);
+        }
+
+        internal override void UpdateAnimationsForState()
+        {
+            return;
+        }
     }
 }

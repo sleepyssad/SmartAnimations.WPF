@@ -121,9 +121,9 @@ namespace SmartAnimations.WPF
 
         internal abstract void UpdateAnimationsForState();
 
-        internal static void OnChange(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        internal static void AttemptСallTrigger(DependencyObject d, DependencyPropertyChangedEventArgs e = default)
         {
-            if (d is SmTrigger smTrigger)
+            if (d is SmTriggerBase smTrigger)
             {
                 if (smTrigger.IsLoaded)
                 {

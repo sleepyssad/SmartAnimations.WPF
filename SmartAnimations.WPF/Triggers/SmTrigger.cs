@@ -1,11 +1,13 @@
 ﻿using SmartAnimations.WPF.Types;
 using System.Windows;
+using System.Windows.Markup;
+using System.Windows.Media.Animation;
 
 namespace SmartAnimations.WPF
 {
     public class SmTrigger : SmTriggerBase
     {
-        public static readonly DependencyProperty FirstValueProperty = DependencyProperty.Register("FirstValue", typeof(object), typeof(SmTrigger), new PropertyMetadata(OnChange));
+        public static readonly DependencyProperty FirstValueProperty = DependencyProperty.Register("FirstValue", typeof(object), typeof(SmTrigger), new PropertyMetadata(AttemptСallTrigger));
 
         public object FirstValue
         {
@@ -13,7 +15,7 @@ namespace SmartAnimations.WPF
             set { SetValue(FirstValueProperty, value); }
         }
 
-        public static readonly DependencyProperty SecondValueProperty = DependencyProperty.Register("SecondValue", typeof(object), typeof(SmTrigger), new PropertyMetadata(OnChange));
+        public static readonly DependencyProperty SecondValueProperty = DependencyProperty.Register("SecondValue", typeof(object), typeof(SmTrigger), new PropertyMetadata(AttemptСallTrigger));
 
         public object SecondValue
         {
@@ -21,7 +23,7 @@ namespace SmartAnimations.WPF
             set { SetValue(SecondValueProperty, value); }
         }
 
-        public static readonly DependencyProperty OperationProperty = DependencyProperty.Register("Operation", typeof(SmTriggerOperation), typeof(SmTrigger), new PropertyMetadata(SmTriggerOperation.Equals, OnChange));
+        public static readonly DependencyProperty OperationProperty = DependencyProperty.Register("Operation", typeof(SmTriggerOperation), typeof(SmTrigger), new PropertyMetadata(SmTriggerOperation.Equals, AttemptСallTrigger));
 
         public SmTriggerOperation Operation
         {

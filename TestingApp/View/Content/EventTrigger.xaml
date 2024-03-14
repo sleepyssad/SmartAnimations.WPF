@@ -7,26 +7,18 @@
              xmlns:an="clr-namespace:SmartAnimations.WPF;assembly=SmartAnimations.WPF"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <!--<Grid>
-        <Button x:Name="sddss" Height="1"/>
+    <Grid>
+        
         <Border BorderBrush="Black" BorderThickness="1" Margin="0 20">
             <Grid>
                 <Grid x:Name="RedGrid"  Background="red" Width="0" Height="50">
-                    <an:SmEventTrigger SourceName="sddss" RoutedEvent="{x:Static Button.ClickEvent}">
-                        <an:SmEventTrigger.EnterActions>
-                            <an:SmDoubleAnimation ParentElement="{Binding ElementName=RedGrid}" 
-               To="{Binding RelativeSource={RelativeSource AncestorType=Grid, Mode=FindAncestor,AncestorLevel=3}, Path=ActualWidth}"
-               Duration="700" 
-               PropertyPath="{x:Static Button.WidthProperty}">
-                            </an:SmDoubleAnimation>
-                        </an:SmEventTrigger.EnterActions>
-                        <an:SmEventTrigger.ExitActions>
-                            <an:SmDoubleAnimation ParentElement="{Binding ElementName=RedGrid}" 
-               To="0"
-               Duration="700" 
-               PropertyPath="{x:Static Button.WidthProperty}">
-                            </an:SmDoubleAnimation>
-                        </an:SmEventTrigger.ExitActions>
+                    <an:SmEventTrigger SourceName="{Binding ElementName=sddss}" RoutedEvent="{x:Static Button.ClickEvent}">
+                        <an:SmDoubleAnimation ParentElement="{Binding ElementName=RedGrid}" 
+             
+                                    To="{Binding RelativeSource={RelativeSource AncestorType=Grid, Mode=FindAncestor,AncestorLevel=3}, Path=ActualWidth}"
+Duration="700" 
+PropertyPath="{x:Static Button.WidthProperty}">
+                        </an:SmDoubleAnimation>
 
                     </an:SmEventTrigger>
                   
@@ -38,5 +30,11 @@
                 </TextBlock>
             </Grid>
         </Border>
-    </Grid>-->
+
+        <Grid>
+            <Grid>
+                <Button x:Name="sddss" Height="10"/>
+            </Grid>
+        </Grid>
+    </Grid>
 </UserControl>

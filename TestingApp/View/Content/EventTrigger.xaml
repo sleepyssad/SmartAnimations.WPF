@@ -3,38 +3,90 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:TestingApp.View.Content"
              xmlns:an="clr-namespace:SmartAnimations.WPF;assembly=SmartAnimations.WPF"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        
-        <Border BorderBrush="Black" BorderThickness="1" Margin="0 20">
+
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="10">
+            <TextBlock FontSize="16" FontWeight="Medium" Margin="0 15">ClickEvent</TextBlock>
+
             <Grid>
-                <Grid x:Name="RedGrid"  Background="red" Width="0" Height="50">
-                    <an:SmEventTrigger SourceName="{Binding ElementName=sddss}" RoutedEvent="{x:Static Button.ClickEvent}">
-                        <an:SmDoubleAnimation ParentElement="{Binding ElementName=RedGrid}" 
-             
-                                    To="{Binding RelativeSource={RelativeSource AncestorType=Grid, Mode=FindAncestor,AncestorLevel=3}, Path=ActualWidth}"
-Duration="700" 
-PropertyPath="{x:Static Button.WidthProperty}">
-                        </an:SmDoubleAnimation>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-                    </an:SmEventTrigger>
-                  
-                    
-                </Grid>
+                <Button x:Name="ButtonFill" Content="Fill" Grid.Column="0"/>
 
-                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="14">
-            Animation
-                </TextBlock>
+                <Button x:Name="ButtonClear" Content="Clear" Grid.Column="1"/>
+
+                <Border BorderBrush="Black" BorderThickness="1" Grid.Column="2">
+                    <Grid>
+                        <Grid x:Name="RedGrid1"  Background="red" Width="0" Height="50">
+                            <an:SmEventTrigger SourceName="{Binding ElementName=ButtonFill}" RoutedEvent="{x:Static Button.ClickEvent}">
+                                <an:SmDoubleAnimation ParentElement="{Binding ElementName=RedGrid1}" 
+                                                      To="{Binding RelativeSource={RelativeSource AncestorType=Grid, Mode=FindAncestor,AncestorLevel=3}, Path=ActualWidth}"
+                                                      Duration="700" 
+                                                      PropertyPath="{x:Static Button.WidthProperty}">
+                                </an:SmDoubleAnimation>
+
+                            </an:SmEventTrigger>
+                            <an:SmEventTrigger SourceName="{Binding ElementName=ButtonClear}" RoutedEvent="{x:Static Button.ClickEvent}">
+                                <an:SmDoubleAnimation ParentElement="{Binding ElementName=RedGrid1}" 
+                                                      To="0"
+                                                      Duration="700" 
+                                                      PropertyPath="{x:Static Button.WidthProperty}">
+                                </an:SmDoubleAnimation>
+
+                            </an:SmEventTrigger>
+                        </Grid>
+
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="14">
+                            Fill and clear animation
+                        </TextBlock>
+                    </Grid>
+                </Border>
             </Grid>
-        </Border>
 
-        <Grid>
+            <TextBlock FontSize="16" FontWeight="Medium" Margin="0 15">MouseEnter and MouseLeave</TextBlock>
+
             <Grid>
-                <Button x:Name="sddss" Height="10"/>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="ButtonMouse" Content="Mouse" Grid.Column="0"/>
+
+                <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1">
+                    <Grid>
+                        <Grid x:Name="RedGrid2"  Background="red" Width="0" Height="50">
+                            <an:SmEventTrigger SourceName="{Binding ElementName=ButtonMouse}" RoutedEvent="{x:Static Button.MouseEnterEvent}">
+                                <an:SmDoubleAnimation ParentElement="{Binding ElementName=RedGrid2}" 
+                                           To="{Binding RelativeSource={RelativeSource AncestorType=Grid, Mode=FindAncestor,AncestorLevel=3}, Path=ActualWidth}"
+                                           Duration="700" 
+                                           PropertyPath="{x:Static Button.WidthProperty}">
+                                </an:SmDoubleAnimation>
+                            </an:SmEventTrigger>
+                            <an:SmEventTrigger SourceName="{Binding ElementName=ButtonMouse}" RoutedEvent="{x:Static Button.MouseLeaveEvent}">
+                                <an:SmDoubleAnimation ParentElement="{Binding ElementName=RedGrid2}" 
+                                           To="0"
+                                           Duration="700" 
+                                           PropertyPath="{x:Static Button.WidthProperty}">
+                                </an:SmDoubleAnimation>
+
+                            </an:SmEventTrigger>
+                        </Grid>
+
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="14">
+                 Fill and clear animation
+                        </TextBlock>
+                    </Grid>
+                </Border>
             </Grid>
-        </Grid>
-    </Grid>
+        </StackPanel>
+    </ScrollViewer>
 </UserControl>

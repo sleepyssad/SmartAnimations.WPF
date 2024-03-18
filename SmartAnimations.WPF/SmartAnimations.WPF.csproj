@@ -5,6 +5,31 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <ImplicitUsings>enable</ImplicitUsings>
+    <PackageId>SmartAnimations.WPF.Core</PackageId>
+    <Title>SmartAnimations.WPF.Core</Title>
+    <Authors>sleepyssad</Authors>
+    <Company>sleepyssad</Company>
+    <Version>1.0.0</Version>
+    <Product>Animations</Product>
+    <Description>More simplified animation creation in WPF .NET core and the ability to bind to animation parameters. The library is based on standard wpf animations. </Description>
+    <PackageProjectUrl></PackageProjectUrl>
+    <PackageIcon>Frame 712.png</PackageIcon>
+    <RepositoryUrl>https://github.com/sleepyssad/SmartAnimations.WPF</RepositoryUrl>
+    <PackageTags>Animation, Animations, Bind, </PackageTags>
+    <Copyright></Copyright>
+    <PackageLicenseExpression> Apache-2.0</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\..\Рабочий стол\Frame 712.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>
